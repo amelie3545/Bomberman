@@ -1,0 +1,25 @@
+---Meilleurs scores---
+pseudo:getg  
+score: -4.000000 
+date: 12/12/2018 
+
+pseudo:zeefg  
+score: -1.666667 
+date: 12/12/2018 
+
+pseudo:tjtuj  
+score: 0.555556 
+date: 12/12/2018 
+
+pseudo:rfr  
+score: 0.550000 
+date: 13/12/2018 
+
+pseudo:eez  
+score: 0.222222 
+date: 13/12/2018 
+
+pseudo:ee  
+score: 1.250000 
+date: 13/12/2018 
+

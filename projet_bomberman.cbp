@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="projet_bomberman" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/projet_bomberman" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="../SDL2/include" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/projet_bomberman" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add directory="D:/Documents/aTravail/ENSEM/2A/c/SDL2/include" />
+		</Compiler>
+		<Linker>
+			<Add option="-lpthread" />
+			<Add option="−lmingw32" />
+			<Add option="−lSDL2main" />
+			<Add option="−lSDL2" />
+			<Add option="−lSDL2_image" />
+			<Add option="−lSDL2_ttf" />
+			<Add library="pthread" />
+			<Add directory="D:/Documents/aTravail/ENSEM/2A/c/SDL2/bin" />
+			<Add directory="D:/Documents/aTravail/ENSEM/2A/c/SDL2/lib" />
+		</Linker>
+		<Unit filename="damier.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="joueur.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="mesfonctions.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
