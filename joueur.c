@@ -99,26 +99,30 @@ void *thread_explosion( void *arg)
             }
         }
     }
+    printf("bombe a explose\n");
     pthread_cond_signal(&cond); //envoie signal au thread que verifie la place du bomberman
 
     }
 
 void *thread_expl_j( void *arg){ // pour faire exploser bomberman
 
-    pthread_mutex_lock(&mutex);
-    pthread_cond_wait(&cond, &mutex);
+
 
     arg_exp_j* argg =(arg_exp_j*)arg;
     int **damier= argg -> damier;
     int *n= argg ->n;
+
     int *place_bombe= argg -> place_bombe;
     int ligne_bombe= place_bombe[0];
     int colonne_bombe= place_bombe[1];
+    pthread_mutex_lock(&mutex);
+    pthread_cond_wait(&cond, &mutex);
     Joueur *j = argg ->j;
-    printf("place j: [ %d, %d ]\n", (*j).ligne, (*j).colonne);
-    if ( (((*j).colonne == colonne_bombe) && ((*j).ligne >= ligne_bombe-*n) && ((*j).ligne <= ligne_bombe+*n) ) || (((*j).ligne == ligne_bombe) && ((*j).colonne >= colonne_bombe-*n) && ((*j).colonne <= colonne_bombe+*n)) ){
+
+    if ( (((*j).colonne == colonne_bombe) && ((*j).ligne >= ligne_bombe-*n) && ((*j).ligne <= ligne_bombe+*n) ) ||
+		(((*j).ligne == ligne_bombe) && ((*j).colonne >= colonne_bombe-*n) && ((*j).colonne <= colonne_bombe+*n)) ){
+
         printf("bomberman explose\n");
-        printf(" entre if  place j: [ %d, %d ]\n", (*j).ligne, (*j).colonne);
         damier[(*j).ligne][(*j).colonne]=0;
         *n=-1; // n >0 => on sort du while du play = FIN
     }
@@ -153,9 +157,8 @@ Joueur play(int **damier, Joueur j, int *n){
 
     while(touche!=120 && *n>0){      // boucle s'arrete quand on appuie sur x ou quand n>0 (cad qd bomberbam touché)
 
-        arg_2[nbr_bombe %10].place_bombe = place_bomb[nbr_bombe %10];
+
         arg_2[nbr_bombe %10].j= &j;
-        pthread_create(&thread_id1[nbr_bombe %10],NULL,thread_expl_j,&arg_2[nbr_bombe %10]); // mise en route thread verifiant la position bomberman par rapport à une bombe
 
         touche= getch();
 
@@ -171,10 +174,15 @@ Joueur play(int **damier, Joueur j, int *n){
             place_bomb [nbr_bombe %10][0]= j.ligne;
             place_bomb [nbr_bombe %10][1]= j.colonne;
             argex[nbr_bombe %10].place_bombe = place_bomb[nbr_bombe %10];
+            arg_2[nbr_bombe %10].place_bombe = place_bomb[nbr_bombe %10];
             argex[nbr_bombe %10].point_obs_exp= &obstacle_expl;
+
+
             damier[place_bomb[nbr_bombe %10][0]][place_bomb[nbr_bombe %10][1]] = 5;
 
             pthread_create(&thread_id[nbr_bombe %10],NULL,thread_explosion,&argex[nbr_bombe %10]); // creation thread explose obstacle
+            pthread_create(&thread_id1[nbr_bombe %10],NULL,thread_expl_j,&arg_2[nbr_bombe %10]); // mise en route thread verifiant la position bomberman par rapport à une bombe
+
         }
 
         // affichage du damier //
@@ -190,7 +198,7 @@ Joueur play(int **damier, Joueur j, int *n){
     */
     // calcul du score //
     j.score_obtenu= score(nbr_bombe,obstacle_expl,memo_n );
-    printf("sc= %f\n",j.score_obtenu);
+
 
     return j;
 }

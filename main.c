@@ -96,7 +96,7 @@ int main(int argc, char* argv[]){
     Joueur joueur1;
 
     // Tableau des scores //
-
+/*
     int initialiser;
     printf("initialiser tableau des scores? oui:1\n");
     scanf("%d",&initialiser);
@@ -106,6 +106,7 @@ int main(int argc, char* argv[]){
     printf("quel est ton pseudo?\n");
     scanf("%s", &joueur1.pseudo);
     printf("pseudo: %s\n", joueur1.pseudo);
+    */
     joueur1.numero=1;
     // n //
     printf("combien de cases voisines vont exploser les bombes ?\n ");
@@ -129,8 +130,7 @@ int main(int argc, char* argv[]){
 
 
     //Problèmes:
-    // on ne peut pas mettre deux bombes en meme temps
-    // ok mais bomberman explose plus je pleeeeeure!!!!!!!!!!!!
+    // no problem <3333
 
 
     return 0;
